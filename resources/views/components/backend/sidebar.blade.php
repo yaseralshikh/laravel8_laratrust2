@@ -17,81 +17,87 @@
                 <span class="inline-flex items-center justify-center w-12 h-12 ml-6 text-sm text-white rounded-full bg-blueGray-200"><img alt="..." class="w-full align-middle border-none rounded-full shadow-lg" src="{{ asset('theme/assets/img/logo.png') }}"></span>
             </div>
             <ul class="flex flex-wrap items-center list-none md:hidden">
-            <li class="relative inline-block">
-                <a
-                class="block px-3 py-1 text-blueGray-500"
-                href="{{ route('admin.index') }}"
-                onclick="openDropdown(event,'notification-dropdown')"
-                ><i class="fas fa-bell"></i
-                ></a>
-                <div
-                class="z-50 hidden float-left py-2 text-base text-left list-none bg-white rounded shadow-lg min-w-48"
-                id="notification-dropdown"
-                >
-                <a
+                <li class="relative inline-block">
+                    <a
+                    class="block px-3 py-1 text-blueGray-500"
                     href="{{ route('admin.index') }}"
-                    class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                    >Action</a
-                ><a
+                    onclick="openDropdown(event,'notification-dropdown')"
+                    ><i class="fas fa-bell"></i
+                    ></a>
+                    <div
+                    class="z-50 hidden float-left py-2 text-base text-left list-none bg-white rounded shadow-lg min-w-48"
+                    id="notification-dropdown"
+                    >
+                    <a
+                        href="{{ route('admin.index') }}"
+                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
+                        >Action</a
+                    ><a
+                        href="{{ route('admin.index') }}"
+                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
+                        >Another action</a
+                    ><a
+                        href="{{ route('admin.index') }}"
+                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
+                        >Something else here</a
+                    >
+                    <div
+                        class="h-0 my-2 border border-solid border-blueGray-100"
+                    ></div>
+                    <a
+                        href="{{ route('logout')}}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700">Logout</a>
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}" id="logout-form" class="hidden">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+                <li class="relative inline-block">
+                    <a
+                    class="block text-blueGray-500"
                     href="{{ route('admin.index') }}"
-                    class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                    >Another action</a
-                ><a
-                    href="{{ route('admin.index') }}"
-                    class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                    >Something else here</a
-                >
-                <div
-                    class="h-0 my-2 border border-solid border-blueGray-100"
-                ></div>
-                <a
-                    href="{{ route('admin.index') }}"
-                    class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                    >Seprated link</a
-                >
-                </div>
-            </li>
-            <li class="relative inline-block">
-                <a
-                class="block text-blueGray-500"
-                href="{{ route('admin.index') }}"
-                onclick="openDropdown(event,'user-responsive-dropdown')"
-                ><div class="flex items-center">
-                    <span
-                    class="inline-flex items-center justify-center w-12 h-12 text-sm text-white rounded-full bg-blueGray-200"
-                    ><img
-                        alt="..."
-                        class="w-full align-middle border-none rounded-full shadow-lg"
-                        src="{{ asset('/theme/assets/img/team-1-800x800.jpg') }}"
-                    /></span></div
-                ></a>
-                <div
-                class="z-50 hidden float-left py-2 text-base text-left list-none bg-white rounded shadow-lg min-w-48"
-                id="user-responsive-dropdown"
-                >
-                <a
-                    href="{{ route('admin.index') }}"
-                    class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                    >Action</a
-                ><a
-                    href="{{ route('admin.index') }}"
-                    class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                    >Another action</a
-                ><a
-                    href="{{ route('admin.index') }}"
-                    class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                    >Something else here</a
-                >
-                <div
-                    class="h-0 my-2 border border-solid border-blueGray-100"
-                ></div>
-                <a
-                    href="{{ route('admin.index') }}"
-                    class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                    >Seprated link</a
-                >
-                </div>
-            </li>
+                    onclick="openDropdown(event,'user-responsive-dropdown')"
+                    ><div class="flex items-center">
+                        <span
+                        class="inline-flex items-center justify-center w-12 h-12 text-sm text-white rounded-full bg-blueGray-200"
+                        ><img
+                            alt="..."
+                            class="w-full align-middle border-none rounded-full shadow-lg"
+                            src="{{ asset('/theme/assets/img/team-1-800x800.jpg') }}"
+                        /></span></div
+                    ></a>
+                    <div
+                    class="z-50 hidden float-left py-2 text-base text-left list-none bg-white rounded shadow-lg min-w-48"
+                    id="user-responsive-dropdown"
+                    >
+                    <a
+                        href="{{ route('admin.index') }}"
+                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
+                        >Action</a
+                    ><a
+                        href="{{ route('admin.index') }}"
+                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
+                        >Another action</a
+                    ><a
+                        href="{{ route('admin.index') }}"
+                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
+                        >Something else here</a
+                    >
+                    <div
+                        class="h-0 my-2 border border-solid border-blueGray-100"
+                    ></div>
+                    <a
+                        href="{{ route('logout')}}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700">Logout</a>
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}" id="logout-form" class="hidden">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
             </ul>
             <div
             class="absolute top-0 left-0 right-0 z-40 items-center flex-1 hidden h-auto overflow-x-hidden overflow-y-auto rounded shadow md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none"

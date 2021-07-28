@@ -34,7 +34,7 @@
                 <!-- Page Content -->
                 <main>
                     <!-- Header -->
-                    <div class="relative pt-12 pb-32 bg-lightBlue-600 md:pt-32">
+                    <div class="relative pt-12 pb-32 bg-pink-800 md:pt-32">
                         <div class="w-full px-4 mx-auto md:px-10">
                             <div>
                                 <!-- Card stats -->

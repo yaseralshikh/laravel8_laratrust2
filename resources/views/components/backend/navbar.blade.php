@@ -27,17 +27,18 @@
         >
             <a
             class="block text-blueGray-500"
-            href="#"
+            href="javascript:void(0);"
             onclick="openDropdown(event,'user-dropdown')"
             >
             <div class="flex items-center">
-                <span
-                class="inline-flex items-center justify-center w-12 h-12 text-sm text-white rounded-full bg-blueGray-200"
-                ><img
-                    alt="..."
-                    class="w-full align-middle border-none rounded-full shadow-lg"
-                    src="{{ asset('/theme/assets/img/team-1-800x800.jpg') }}"
-                /></span>
+                <p class="pr-4 text-white">{{ auth()->user()->name }}</p>
+                <span class="inline-flex items-center justify-center w-12 h-12 text-sm text-white rounded-full bg-blueGray-200">
+
+                    <img
+                        alt="..."
+                        class="w-full align-middle border-none rounded-full shadow-lg"
+                        src="{{ asset('/theme/assets/img/team-1-800x800.jpg') }}"/>
+                </span>
             </div>
             </a>
             <div
@@ -61,10 +62,13 @@
                 class="h-0 my-2 border border-solid border-blueGray-100"
             ></div>
             <a
-                href="{{ route('admin.index')}}"
-                class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                >Seprated link</a
-            >
+                href="{{ route('logout')}}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700">Logout</a>
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}" id="logout-form" class="hidden">
+                    @csrf
+                </form>
             </div>
         </ul>
         </div>
