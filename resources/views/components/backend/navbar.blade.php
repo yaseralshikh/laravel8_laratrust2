@@ -31,7 +31,6 @@
             onclick="openDropdown(event,'user-dropdown')"
             >
             <div class="flex items-center">
-                <p class="pr-4 text-white">{{ auth()->user()->name }}</p>
                 <span class="inline-flex items-center justify-center w-12 h-12 text-sm text-white rounded-full bg-blueGray-200">
 
                     <img
@@ -46,10 +45,14 @@
             id="user-dropdown"
             >
             <a
-                href="{{ route('admin.index')}}"
-                class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                >Action</a
-            ><a
+                href="javascript:void(0);"
+                class="block w-full px-4 py-2 text-sm font-normal text-pink-600 bg-transparent whitespace-nowrap"
+                >Welcome : {{ auth()->user()->name }}</a
+            >
+            <div
+                class="h-0 my-2 border border-solid border-blueGray-100"
+            ></div>
+            <a
                 href="{{ route('admin.index')}}"
                 class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                 >Another action</a

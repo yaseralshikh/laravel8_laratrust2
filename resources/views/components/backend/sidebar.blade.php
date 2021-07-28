@@ -11,7 +11,7 @@
             <div class="flex flex-wrap content-center">
                 <a
                 class="inline-block p-4 px-0 mr-0 text-sm font-bold text-left uppercase md:block md:pb-2 text-blueGray-600 whitespace-nowrap"
-                href="{{ route('admin.index') }}">
+                href="javascript:void(0);">
                     Notus JS
                 </a>
                 <span class="inline-flex items-center justify-center w-12 h-12 ml-6 text-sm text-white rounded-full bg-blueGray-200"><img alt="..." class="w-full align-middle border-none rounded-full shadow-lg" src="{{ asset('theme/assets/img/logo.png') }}"></span>
@@ -20,7 +20,7 @@
                 <li class="relative inline-block">
                     <a
                     class="block px-3 py-1 text-blueGray-500"
-                    href="{{ route('admin.index') }}"
+                    href="javascript:void(0);"
                     onclick="openDropdown(event,'notification-dropdown')"
                     ><i class="fas fa-bell"></i
                     ></a>
@@ -29,10 +29,14 @@
                     id="notification-dropdown"
                     >
                     <a
-                        href="{{ route('admin.index') }}"
-                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                        >Action</a
-                    ><a
+                        href="javascript:void(0);"
+                        class="block w-full px-4 py-2 text-sm font-normal text-pink-600 bg-transparent whitespace-nowrap"
+                        >Welcome : {{ auth()->user()->name }}</a
+                    >
+                    <div
+                        class="h-0 my-2 border border-solid border-blueGray-100"
+                    ></div>
+                    <a
                         href="{{ route('admin.index') }}"
                         class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                         >Another action</a
@@ -57,7 +61,7 @@
                 <li class="relative inline-block">
                     <a
                     class="block text-blueGray-500"
-                    href="{{ route('admin.index') }}"
+                    href="javascript:void(0);"
                     onclick="openDropdown(event,'user-responsive-dropdown')"
                     ><div class="flex items-center">
                         <span
@@ -73,10 +77,14 @@
                     id="user-responsive-dropdown"
                     >
                     <a
-                        href="{{ route('admin.index') }}"
-                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
-                        >Action</a
-                    ><a
+                        href="javascript:void(0);"
+                        class="block w-full px-4 py-2 text-sm font-normal text-pink-600 bg-transparent whitespace-nowrap"
+                        >Welcome : {{ auth()->user()->name }}</a
+                    >
+                    <div
+                        class="h-0 my-2 border border-solid border-blueGray-100"
+                    ></div>
+                    <a
                         href="{{ route('admin.index') }}"
                         class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                         >Another action</a
@@ -149,7 +157,7 @@
                 <li class="items-center">
                 <a
                     href="{{ route('admin.index') }}"
-                    class="block py-3 text-xs font-bold uppercase hover:text-pink-600 {{ Str::contains(Request::is('admin'), 1) ? 'text-pink-500' : 'text-blueGray-700'}}"
+                    class="block py-3 text-xs font-bold uppercase hover:text-blueGray-500 {{ Str::contains(Request::is('admin'), 1) ? 'text-pink-500' : 'text-blueGray-700'}}"
                 >
                     <i class="mr-2 text-sm opacity-75 fas fa-tv"></i>
                     Dashboard
