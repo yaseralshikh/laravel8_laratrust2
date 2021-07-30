@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +28,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::group(['middleware' => ['role:super_admin|admin']], function () {
 
         Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+            // admin backend route
             Route::get('/',           [AdminController::class, 'index'])->name('index');
             Route::get('/maps',       [AdminController::class, 'maps'])->name('maps');
             Route::get('/settings',   [AdminController::class, 'settings'])->name('settings');
             Route::get('/tables',     [AdminController::class, 'tables'])->name('tables');
+
+            // admin users backend route
+            Route::resource('/user', UserController::class);
         });
     });
 });

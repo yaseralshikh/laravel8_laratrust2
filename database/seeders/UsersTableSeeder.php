@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('123456789'),
             'remember_token' => Str::random(10),
-            'profile_photo_path' => 'avatar.jpg',
+            'profile_photo_path' => 'avatar.png',
 
         ]);
         $super_admin->attachRole('super_admin');
@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt('123456789'),
             'remember_token' => Str::random(10),
-            'profile_photo_path' => 'avatar.jpg',
+            'profile_photo_path' => 'avatar.png',
 
         ]);
         $admin->attachRole('admin');

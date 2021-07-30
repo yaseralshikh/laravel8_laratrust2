@@ -164,6 +164,15 @@
                 </a>
                 </li>
 
+                @if (auth()->user()->hasPermission('users-read'))
+                    <li class="items-center">
+                        <a href="{{ route('admin.user.index') }}" class="block py-3 text-xs font-bold uppercase hover:text-blueGray-500 {{ Str::contains(request()->path(), 'user') ? 'text-pink-500' : 'text-blueGray-700'}}">
+                            <i class="mr-2 text-sm fas fa-user text-blueGray-300"></i>
+                            Users
+                        </a>
+                    </li>
+                @endif
+
                 <li class="items-center">
                 <a
                     href="{{ route('admin.settings') }}"

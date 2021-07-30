@@ -101,6 +101,35 @@
                 >
                     Profile
                 </a>
+                <div
+                    class="h-0 mx-4 my-2 border border-solid border-blueGray-100"
+                ></div>
+
+                @auth
+                    <a
+                    href="{{ route('logout')}}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700">Logout</a>
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}" id="logout-form" class="hidden">
+                        @csrf
+                    </form>
+                @else
+                    <a
+                        href="{{ route('login') }}"
+                        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700">
+                        Login
+                    </a>
+
+                    @if (Route::has('register'))
+                        <a
+                            href="{{ route('register') }}"
+                            class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700">
+                            Register
+                        </a>
+                    @endif
+                @endauth
+                </a>
                 </div>
             </li>
             <li class="flex items-center">
