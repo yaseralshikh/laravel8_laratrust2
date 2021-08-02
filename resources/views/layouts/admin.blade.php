@@ -11,8 +11,8 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <!-- Custom font awesome -->
         <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-        <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
         <!-- Custom font cairo -->
         <link rel="stylesheet" href="{{ asset('css/font-cairo.css') }}">
 
@@ -177,8 +177,15 @@
             </div>
         </div>
 
+        @stack('modals')
+
         @livewireScripts
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <x-livewire-alert::scripts />
+
         @stack('script')
+
         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
         <script type="text/javascript">
             /* Make dynamic date appear */
