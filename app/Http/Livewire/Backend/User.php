@@ -27,6 +27,7 @@ class User extends Component
     public $user_image;
     public $user_image_name;
     public $role_id;
+    public $permissions=[];
     public $confirmUserDeletion = false;
 
     public function showCreateModel()
@@ -42,7 +43,8 @@ class User extends Component
             'email'             => ['required','email', Rule::unique('users', 'email')->ignore($this->modalId)],
             'password'          => ['required','string','confirmed','min:8'],
             'user_image'        => [Rule::requiredIf(!$this->modalId), 'max:1024'],
-            'role_id'           => ['required']
+            'role_id'           => ['required'],
+            'permissions'       => ['required']
         ];
     }
 
@@ -110,6 +112,8 @@ class User extends Component
         $this->email = $data->email;
         $this->role_id = $data->roles[0]->id;
         $this->image = $data->profile_photo_path;
+        $this->permissions = $data->permissions;
+        //dd($this->permissions);
     }
 
     public function showUpdateModal($id)
@@ -138,6 +142,7 @@ class User extends Component
         $user->update($this->modelData());
 
         $user->roles()->sync($this->role_id);
+        $user->permissions()->sync([1,2,3]);
 
         $this->modalFormVisible = false;
         $this->modalFormReset();
