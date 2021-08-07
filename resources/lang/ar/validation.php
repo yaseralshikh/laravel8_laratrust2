@@ -160,6 +160,7 @@ return [
         'year'                  => 'السنة',
 
         'role_id'               => 'نوع الحساب',
-        'user_image'               => 'الصورة من نوع'
+        'user_image'            => 'الصورة من نوع',
+        'user_permissions'      => 'صلاحيات المستخدم',
     ]
 ];

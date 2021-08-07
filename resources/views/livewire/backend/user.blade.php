@@ -188,7 +188,6 @@
 
                     @php
                         $models = ['users','profile'];
-                        $maps = ['create', 'read', 'update', 'delete'];
                     @endphp
 
                     <div class="flex flex-wrap" id="wrapper-for-text-blueGray">
@@ -208,27 +207,25 @@
                                     <div class="tab-content tab-space">
                                         @foreach ($models as $index=>$model)
                                             <div class="{{ $index == 0 ? 'block' : 'hidden' }}" data-tab-content="true" id="text-tab-{{ $model }}-blueGray">
-                                                @foreach ($maps as $index=>$map)
-                                                    <label class="inline-flex items-center mt-3">
-                                                        <x-jet-checkbox type="checkbox" name="permissions[]" wire:model="permissions" class="w-5 h-5 mr-3 text-gray-600 form-checkbox"/>
-                                                        <span class="mr-1 text-gray-700"> @lang('site.' . $map)</span>
+                                                @foreach ($permissions as $permission)
+                                                    <label class="inline-flex items-center mt-3" :key="{{ $permission->id }}">
+                                                        <x-jet-checkbox
+                                                        type="checkbox"
+                                                        wire:model="user_permissions.{{ $permission->id }}"
+                                                        value="{{ $permission->id }}"
+                                                        {{ in_array($permission->id, $user_permissions) ? 'checked' : '' }}
+                                                        class="w-5 h-5 mr-3 text-gray-600 form-checkbox"/>
+                                                        <span class="mr-1 text-gray-700">{{ $permission->display_name }}</span>
                                                     </label>
                                                 @endforeach
                                             </div>
                                         @endforeach
+                                        @error('user_permissions')<span class="text-sm font-extrabold text-red-600">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    {{-- test anther way --}}
-
-                    @foreach ($permissions as $index=>$permission)
-                        <x-jet-checkbox key="{{ $permission->id }}" type="checkbox" name="permissions[]" wire:model="permissions" value="{{ $permission->id }}"   class="w-5 h-5 mr-3 text-gray-600 form-checkbox"/>
-                        <label class="inline-flex items-center mt-3">{{ $permission->name }}</label>
-                    @endforeach
-
                 </div>
 
             </x-slot>

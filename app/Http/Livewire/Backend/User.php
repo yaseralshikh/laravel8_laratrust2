@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Backend;
 
+use App\Models\Permission;
 use App\Models\User as ModelsUser;
 use App\Models\Role;
 use Illuminate\Support\Facades\File;
@@ -27,7 +28,7 @@ class User extends Component
     public $user_image;
     public $user_image_name;
     public $role_id;
-    public $permissions=[];
+    public $user_permissions = [];
     public $confirmUserDeletion = false;
 
     public function showCreateModel()
@@ -38,14 +39,29 @@ class User extends Component
 
     public function rules()
     {
-        return [
-            'name'              => ['required'],
-            'email'             => ['required','email', Rule::unique('users', 'email')->ignore($this->modalId)],
-            'password'          => ['required','string','confirmed','min:8'],
-            'user_image'        => [Rule::requiredIf(!$this->modalId), 'max:1024'],
-            'role_id'           => ['required'],
-            'permissions'       => ['required']
-        ];
+        if ($this->modalId != '') { // for update
+
+            return [
+                'email'             => ['email', Rule::unique('users', 'email')->ignore($this->modalId)],
+                'password'          => ['nullable','string','confirmed','min:8'],
+                'user_image'        => [Rule::requiredIf(!$this->modalId), 'max:1024'],
+                'role_id'           => ['required'],
+                'user_permissions'  => ['required']
+            ];
+
+        } else { // for store
+
+            return [
+                'name'              => ['required'],
+                'email'             => ['required','email', Rule::unique('users', 'email')],
+                'password'          => ['required','string','confirmed','min:8'],
+                'user_image'        => [Rule::requiredIf(!$this->modalId), 'max:1024'],
+                'role_id'           => ['required'],
+                'user_permissions'  => ['required']
+            ];
+
+        }
+
     }
 
     public function modelData()
@@ -56,6 +72,7 @@ class User extends Component
             'email_verified_at' => Carbon::now(),
             'remember_token'    => Str::random(10),
             'password'          => Hash::make($this->password),
+            'user_permissions'  => $this->user_permissions
         ];
 
         if ($this->user_image != ''){
@@ -76,6 +93,7 @@ class User extends Component
         $this->user_image = null;
         $this->user_image_name = null;
         $this->role_id = null;
+        $this->user_permissions = null;
         $this->resetValidation();
     }
 
@@ -90,6 +108,7 @@ class User extends Component
 
         $user = ModelsUser::create($this->modelData());
         $user->attachRole($this->role_id);
+        $user->permissions()->attach($this->user_permissions);
 
         $this->modalFormReset();
         $this->modalFormVisible = false;
@@ -111,9 +130,10 @@ class User extends Component
         $this->name = $data->name;
         $this->email = $data->email;
         $this->role_id = $data->roles[0]->id;
+        $this->user_permissions = $data->permissions()->pluck('permission_id')->toArray();
         $this->image = $data->profile_photo_path;
-        $this->permissions = $data->permissions;
-        //dd($this->permissions);
+
+        //dd($this->user_permissions);
     }
 
     public function showUpdateModal($id)
@@ -142,7 +162,7 @@ class User extends Component
         $user->update($this->modelData());
 
         $user->roles()->sync($this->role_id);
-        $user->permissions()->sync([1,2,3]);
+        $user->permissions()->sync($this->user_permissions);
 
         $this->modalFormVisible = false;
         $this->modalFormReset();
@@ -202,6 +222,7 @@ class User extends Component
         return view('livewire.backend.user', [
             'users' => $this->all_users(),
             'roles' => $this->all_roles(),
+            'permissions' => Permission::get(['id', 'display_name'])
         ]);
     }
 }
