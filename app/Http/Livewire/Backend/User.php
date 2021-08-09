@@ -39,6 +39,15 @@ class User extends Component
 
     public function rules()
     {
+/*         return [
+            'name'              => ['required'],
+            'email'             => ['required','email', Rule::unique('users', 'email')->ignore($this->modalId)],
+            'password'          => ['required','string','confirmed','min:8'],
+            'user_image'        => [Rule::requiredIf(!$this->modalId), 'max:1024'],
+            'role_id'           => ['required'],
+            'user_permissions'  => ['required']
+        ]; */
+
         if ($this->modalId != '') { // for update
 
             return [
@@ -61,7 +70,6 @@ class User extends Component
             ];
 
         }
-
     }
 
     public function modelData()
@@ -93,7 +101,7 @@ class User extends Component
         $this->user_image = null;
         $this->user_image_name = null;
         $this->role_id = null;
-        $this->user_permissions = null;
+		$this->user_permissions = [];
         $this->resetValidation();
     }
 
@@ -130,10 +138,10 @@ class User extends Component
         $this->name = $data->name;
         $this->email = $data->email;
         $this->role_id = $data->roles[0]->id;
-        $this->user_permissions = $data->permissions()->pluck('permission_id')->toArray();
         $this->image = $data->profile_photo_path;
+        $this->user_permissions = $data->permissions()->pluck('id','permission_id')->toArray();
 
-        //dd($this->user_permissions);
+        // dd($this->permissions);
     }
 
     public function showUpdateModal($id)
@@ -207,22 +215,22 @@ class User extends Component
 
     }
 
-    public function all_users()
-    {
-        return ModelsUser::orderByDesc('name')->paginate(50);
-    }
+    // public function all_roles()
+    // {
+    //     return Role::whereIn('name' ,['admin','user'])->get();
+    // }
 
-    public function all_roles()
-    {
-        return Role::all();
-    }
+    // public function all_users()
+    // {
+    //     return ModelsUser::whereRoleIs(['admin','user'])->orderByDesc('name')->paginate(50);
+    // }
 
     public function render()
     {
         return view('livewire.backend.user', [
-            'users' => $this->all_users(),
-            'roles' => $this->all_roles(),
-            'permissions' => Permission::get(['id', 'display_name'])
+            'users'         => ModelsUser::orderByDesc('name')->paginate(50),
+            'roles'         => Role::all(),
+            'permissions'   => Permission::get(['id', 'display_name'])
         ]);
     }
 }

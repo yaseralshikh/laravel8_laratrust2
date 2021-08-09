@@ -17,7 +17,7 @@ return [
             'profile' => 'r,u'
         ],
         'admin' => [
-            'profile' => 'r,u'
+            'profile' => 'r,u',
         ],
         'user' => [
             'profile' => 'r,u',

@@ -26,16 +26,5 @@ class UsersTableSeeder extends Seeder
 
         ]);
         $super_admin->attachRole('super_admin');
-
-        $admin = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'email_verified_at' => Carbon::now(),
-            'password' => bcrypt('123456789'),
-            'remember_token' => Str::random(10),
-            'profile_photo_path' => 'avatar.png',
-
-        ]);
-        $admin->attachRole('admin');
     }
 }
