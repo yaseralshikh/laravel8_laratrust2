@@ -215,21 +215,11 @@ class User extends Component
 
     }
 
-    // public function all_roles()
-    // {
-    //     return Role::whereIn('name' ,['admin','user'])->get();
-    // }
-
-    // public function all_users()
-    // {
-    //     return ModelsUser::whereRoleIs(['admin','user'])->orderByDesc('name')->paginate(50);
-    // }
-
     public function render()
     {
         return view('livewire.backend.user', [
-            'users'         => ModelsUser::orderByDesc('name')->paginate(50),
-            'roles'         => Role::all(),
+            'users'         => ModelsUser::whereRoleIs(['admin','user'])->orderByDesc('name')->paginate(50),
+            'roles'         => Role::whereIn('name' ,['admin','user'])->get(),
             'permissions'   => Permission::get(['id', 'display_name'])
         ]);
     }
