@@ -225,14 +225,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- test anther way --}}
-
-                    {{--@foreach ($permissions as $index=>$permission)
-                        <x-jet-checkbox key="{{ $permission->id }}" type="checkbox" name="permissions[]" wire:model="permissions" value="{{ $permission->id }}"   class="w-5 h-5 mr-3 text-gray-600 form-checkbox"/>
-                        <label class="inline-flex items-center mt-3">{{ $permission->name }}</label>
-                    @endforeach--}}
-
                 </div>
 
             </x-slot>
