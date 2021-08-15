@@ -167,17 +167,25 @@ class User extends Component
             $this->user_image->storeAs('/', $this->user_image_name, 'uploads');
         }
 
+        $user_permissions = [];
+        for ($i=0; $i <  count($this->user_permissions); $i++) {
+            $permission_value = array_values($this->user_permissions);
+            if ($permission_value[$i] != false) {
+                array_push($user_permissions, $permission_value[$i]);
+            }
+        }
+
         $user->update($this->modelData());
 
         $user->roles()->sync($this->role_id);
-        $user->permissions()->sync($this->user_permissions);
+        $user->permissions()->sync($user_permissions);
 
         $this->modalFormVisible = false;
         $this->modalFormReset();
 
         $this->alert('success', 'User updated successful!', [
-            'position'  =>  'center',
-            'timer'  =>  3000,
+            'position'  =>  'top-end',
+            'timer'  =>  2000,
             'toast'  =>  true,
             'text'  =>  null,
             'showCancelButton'  =>  false,

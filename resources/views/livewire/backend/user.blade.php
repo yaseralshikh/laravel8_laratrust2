@@ -179,11 +179,12 @@
                     @error('user_image')<span class="text-sm font-extrabold text-red-600">{{ $message }}</span>@enderror
                 </div>
 
-                <hr class="mt-6">
-
                 {{-- permissions --}}
 
-                <div class="mt-6">
+                <div class="mt-6" id="permissions_section">
+
+                    <hr class="mb-3">
+
                     <x-jet-label class="mb-4" for="image" value="{{ __('site.permissions') }} :"></x-jet-label>
 
                     @php
@@ -212,7 +213,7 @@
                                                         <x-jet-checkbox
                                                             type="checkbox"
                                                             name="user_permissions.{{ $permission->id }}"
-                                                            wire:model="user_permissions.{{ $permission->id }}"
+                                                            wire:model.defer="user_permissions.{{ $permission->id }}"
                                                             value="{{ $permission->id }}"
                                                             class="w-5 h-5 mr-3 text-gray-600 form-checkbox"/>
                                                         <span class="mr-1 text-gray-700">{{ $permission->display_name }}</span>
@@ -300,4 +301,18 @@
             }
         }
     </script>
+
+    {{-- <script>
+        $(document).ready(function() {
+            $('select').on('change', function(event) {
+                event.preventDefault();
+                if (this.value == "3") {
+                    $('#permissions_section').fadeOut(500);
+                } else {
+                    $('#permissions_section').slideDown(500);
+                }
+            });
+        });
+    </script> --}}
+
 @endpush

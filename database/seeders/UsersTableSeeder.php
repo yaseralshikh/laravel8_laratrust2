@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'super_admin@gmail.com',
             'email_verified_at' => Carbon::now(),
-            'password' => bcrypt('123456789'),
+            'password' => bcrypt('123123123'),
             'remember_token' => Str::random(10),
             'profile_photo_path' => 'avatar.png',
 
