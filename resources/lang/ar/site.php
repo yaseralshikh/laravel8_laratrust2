@@ -28,4 +28,10 @@ return [
     'read' => 'عرض',
     'update' => 'تحديث',
     'profile' => 'الملف الشخصي',
+    'Create Users' => 'اضافة مستخدم',
+    'Read Users' => 'عرض مستخدم',
+    'Update Users' => 'تحديث مستخدم',
+    'Delete Users' => 'حذف مستخدم',
+    'Read Profile' => 'عرض الملف الشخصي',
+    'Update Profile' => 'تحديث  الملف الشخصي',
 ];

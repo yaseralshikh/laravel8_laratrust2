@@ -187,41 +187,21 @@
 
                     <x-jet-label class="mb-4" for="image" value="{{ __('site.permissions') }} :"></x-jet-label>
 
-                    @php
-                        $models = ['users','profile'];
-                    @endphp
-
                     <div class="flex flex-wrap" id="wrapper-for-text-blueGray">
                         <div class="w-full">
-                            <ul class="flex flex-row flex-wrap pt-3 pb-4 mb-0 list-none">
-                                @foreach ($models as $index=>$model)
-                                    <li class="-mb-px mr-2 last:mr-0 flex-auto text-center {{ $index == 0 ? 'active' : '' }}">
-                                        <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal {{ $index == 0 ? 'bg-blueGray-700 text-white' : 'text-blueGray-700 bg-white' }}" data-tab-toggle="text-tab-{{ $model }}-blueGray" onclick="changeAtiveTab(event,'wrapper-for-text-blueGray','blueGray','text-tab-{{ $model }}-blueGray')">
-                                            @lang('site.' . $model)
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-
                             <div class="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white rounded shadow-lg">
                                 <div class="flex-auto px-4 py-2">
-                                    <div class="tab-content tab-space">
-                                        @foreach ($models as $index=>$model)
-                                            <div class="{{ $index == 0 ? 'block' : 'hidden' }}" data-tab-content="true" id="text-tab-{{ $model }}-blueGray">
-                                                @foreach ($permissions as $permission)
-                                                    <label class="inline-flex items-center mt-3" :key="{{ $permission->id }}">
-                                                        <x-jet-checkbox
-                                                            type="checkbox"
-                                                            name="user_permissions.{{ $permission->id }}"
-                                                            wire:model.defer="user_permissions.{{ $permission->id }}"
-                                                            value="{{ $permission->id }}"
-                                                            class="w-5 h-5 mr-3 text-gray-600 form-checkbox"/>
-                                                        <span class="mr-1 text-gray-700">{{ $permission->display_name }}</span>
-                                                    </label>
-                                                @endforeach
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                    @foreach ($permissions as $permission)
+                                            <label class="inline-flex items-center mt-3" :key="{{ $permission->id }}">
+                                                <x-jet-checkbox
+                                                    type="checkbox"
+                                                    name="user_permissions.{{ $permission->id }}"
+                                                    wire:model.defer="user_permissions.{{ $permission->id }}"
+                                                    value="{{ $permission->id }}"
+                                                    class="w-5 h-5 mr-3 text-gray-600 form-checkbox"/>
+                                                <span class="mr-1 text-gray-700">@lang('site.' . $permission->display_name)</span>
+                                            </label>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -276,33 +256,8 @@
 </div>
 
 @push('script')
-    <script type="text/javascript">
-        function changeAtiveTab(event,wrapperID,color,tabID){
-            let tabsWrapper = document.getElementById(wrapperID);
-            let tabsAnchors = tabsWrapper.querySelectorAll("[data-tab-toggle]");
-            let tabsContent = tabsWrapper.querySelectorAll("[data-tab-content]");
 
-            for(let i = 0; i < tabsAnchors.length; i++) {
-                if(tabsAnchors[i].getAttribute("data-tab-toggle") === tabID){
-                    tabsAnchors[i].classList.remove("text-" + color + "-700");
-                    tabsAnchors[i].classList.remove("bg-white");
-                    tabsAnchors[i].classList.add("text-white");
-                    tabsAnchors[i].classList.add("bg-" + color + "-700");
-                    tabsContent[i].classList.remove("hidden");
-                    tabsContent[i].classList.add("block");
-                } else {
-                    tabsAnchors[i].classList.add("text-" + color + "-700");
-                    tabsAnchors[i].classList.add("bg-white");
-                    tabsAnchors[i].classList.remove("text-white");
-                    tabsAnchors[i].classList.remove("bg-" + color + "-700");
-                    tabsContent[i].classList.add("hidden");
-                    tabsContent[i].classList.remove("block");
-                }
-            }
-        }
-    </script>
-
-    {{-- <script>
+{{-- <script>
         $(document).ready(function() {
             $('select').on('change', function(event) {
                 event.preventDefault();
