@@ -4,37 +4,29 @@ const colors = require("tailwindcss/colors");
 
 module.exports = {
   mode: 'jit',
-  purge: [
-    './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-    './vendor/laravel/jetstream/**/*.blade.php',
-    './storage/framework/views/*.php',
-    './resources/views/**/*.blade.php',
-  ],
+  purge: {
+    enabled: true,
+    content: [
+      './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+      './vendor/laravel/jetstream/**/*.blade.php',
+      './storage/framework/views/*.php',
+      './resources/views/**/*.blade.php',      
+    ],
+    options: {
+      safelist: [],
+    },
+  },
   theme: {
+    colors: {
+      ...colors,      
+    },
     extend: {
-      colors: {
-        transparent: 'transparent',
-        current: 'currentColor',
-        blue: {
-          light: '#85d7ff',
-          DEFAULT: '#1fb6ff',
-          dark: '#009eeb',
-        },
-        pink: {
-          light: '#ff7ce5',
-          DEFAULT: '#ff49db',
-          dark: '#ff16d1',
-        },
-        gray: {
-          darkest: '#1f2d3d',
-          dark: '#3c4858',
-          DEFAULT: '#c0ccda',
-          light: '#e0e6ed',
-          lightest: '#f9fafc',
-        }
-      },
       fontFamily: {
         sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+      },
+      zIndex: {
+        2: 2,
+        3: 3,
       },
       minHeight: {
         "screen-75": "75vh",
@@ -108,10 +100,8 @@ module.exports = {
     "visited",
     "disabled",
   ],
-
   plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
+    require("@tailwindcss/forms"),
     plugin(function ({ addComponents, theme }) {
       const screens = theme("screens", {});
       addComponents([
@@ -156,4 +146,4 @@ module.exports = {
       ]);
     }),
   ],
-}
+};

@@ -3,7 +3,7 @@
     <div class="flex flex-wrap">
         <div class="w-full px-4 mb-12 xl:w-8/12 xl:mb-0">
             <div
-            class="relative flex flex-col w-full min-w-0 mb-6 break-words rounded shadow-lg bg-blueGray-700"
+            class="relative flex flex-col w-full min-w-0 mb-6 break-words rounded shadow-lg bg-blueGray-800"
             >
             <div class="px-4 py-3 mb-0 bg-transparent rounded-t">
                 <div class="flex flex-wrap items-center">
