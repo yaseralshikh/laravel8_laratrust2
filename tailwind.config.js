@@ -9,28 +9,28 @@ module.exports = {
     './vendor/laravel/jetstream/**/*.blade.php',
     './storage/framework/views/*.php',
     './resources/views/**/*.blade.php',
-  ],  
+  ],
   theme: {
     extend: {
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
         blue: {
-            light: '#85d7ff',
-            DEFAULT: '#1fb6ff',
-            dark: '#009eeb',
+          light: '#85d7ff',
+          DEFAULT: '#1fb6ff',
+          dark: '#009eeb',
         },
         pink: {
-            light: '#ff7ce5',
-            DEFAULT: '#ff49db',
-            dark: '#ff16d1',
+          light: '#ff7ce5',
+          DEFAULT: '#ff49db',
+          dark: '#ff16d1',
         },
         gray: {
-            darkest: '#1f2d3d',
-            dark: '#3c4858',
-            DEFAULT: '#c0ccda',
-            light: '#e0e6ed',
-            lightest: '#f9fafc',
+          darkest: '#1f2d3d',
+          dark: '#3c4858',
+          DEFAULT: '#c0ccda',
+          light: '#e0e6ed',
+          lightest: '#f9fafc',
         }
       },
       fontFamily: {
@@ -91,7 +91,7 @@ module.exports = {
       },
       backgroundSize: {
         full: "100%",
-      },      
+      },
     },
   },
   variants: [
@@ -113,47 +113,47 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     plugin(function ({ addComponents, theme }) {
-        const screens = theme("screens", {});
-        addComponents([
-            {
-                ".container": { width: "100%" },
+      const screens = theme("screens", {});
+      addComponents([
+        {
+          ".container": { width: "100%" },
+        },
+        {
+          [`@media (min-width: ${screens.sm})`]: {
+            ".container": {
+              "max-width": "640px",
             },
-            {
-                [`@media (min-width: ${screens.sm})`]: {
-                    ".container": {
-                    "max-width": "640px",
-                    },
-                },
+          },
+        },
+        {
+          [`@media (min-width: ${screens.md})`]: {
+            ".container": {
+              "max-width": "768px",
             },
-            {
-                [`@media (min-width: ${screens.md})`]: {
-                    ".container": {
-                    "max-width": "768px",
-                    },
-                },
+          },
+        },
+        {
+          [`@media (min-width: ${screens.lg})`]: {
+            ".container": {
+              "max-width": "1024px",
             },
-            {
-                [`@media (min-width: ${screens.lg})`]: {
-                    ".container": {
-                    "max-width": "1024px",
-                    },
-                },
+          },
+        },
+        {
+          [`@media (min-width: ${screens.xl})`]: {
+            ".container": {
+              "max-width": "1280px",
             },
-            {
-                [`@media (min-width: ${screens.xl})`]: {
-                    ".container": {
-                    "max-width": "1280px",
-                    },
-                },
+          },
+        },
+        {
+          [`@media (min-width: ${screens["2xl"]})`]: {
+            ".container": {
+              "max-width": "1280px",
             },
-            {
-                [`@media (min-width: ${screens["2xl"]})`]: {
-                    ".container": {
-                    "max-width": "1280px",
-                    },
-                },
-            },
-        ]);
+          },
+        },
+      ]);
     }),
   ],
 }
